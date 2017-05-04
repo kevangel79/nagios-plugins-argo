@@ -4,8 +4,8 @@
 
 Name: nagios-plugins-argo
 Summary: ARGO components related probes.
-Version: 0.1.5
-Release: 2%{?dist}
+Version: 0.1.6
+Release: 4%{?dist}
 License: ASL 2.0
 Source0: %{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
@@ -16,9 +16,10 @@ Requires: python-requests, pyOpenSSL, python-argparse, nagios-plugins-file_age, 
 %description
 This package includes probes for ARGO components. 
 Currently it supports the following components:
- - ARGO Web API
  - ARGO Consumer log
- - POEM
+ - ARGO EGI Connectors
+ - ARGO Web API
+ - POEM service
 
 %prep
 %setup -q 
@@ -42,6 +43,18 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Wed Apr 26 2017 Daniel Vrcic <daniel.vrcic@gmail.com> - 0.1.6-4%{?dist}
+- converted tab to whitespaces 
+- check current date for the downtimes state
+- vertical line separator for multiple fail msgs 
+* Wed Apr 26 2017 Hrvoje Sute <sute.hrvoje@gmail.com> - 0.1.6-3%{?dist}
+- More descriptive OK status
+* Tue Apr 25 2017 Hrvoje Sute <sute.hrvoje@gmail.com> - 0.1.6-2%{?dist}
+- Removed debugger lefover module
+* Thu Apr 20 2017 Hrvoje Sute <sute.hrvoje@gmail.com> - 0.1.6-1%{?dist}
+- ARGO-754 Nagios sensor for connectors component
+* Thu Apr 6 2017 Daniel Vrcic <daniel.vrcic@gmail.com> - 0.1.5-3%{?dist}
+- ARGO-773 POEM probe should have argument for client certificate 
 * Tue Mar 21 2017 Daniel Vrcic <daniel.vrcic@gmail.com>, Themis Zamani <themiszamani@gmail.com> - 0.1.5-2%{?dist}
 - POEM probe verify certs in all request calls to remove warning msg 
 - ARGO-756 [WEB API] - New status check to nagios internal probe
