@@ -4,20 +4,21 @@
 
 Name: nagios-plugins-argo
 Summary: ARGO components related probes.
-Version: 0.1.6
+Version: 0.1.7
 Release: 4%{?dist}
 License: ASL 2.0
 Source0: %{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Group: Network/Monitoring
 BuildArch: noarch
-Requires: python-requests, pyOpenSSL, python-argparse, nagios-plugins-file_age, curl
+Requires: python-requests, argo-ams-library, pyOpenSSL, python-argparse, nagios-plugins-file_age, curl
 
 %description
 This package includes probes for ARGO components. 
 Currently it supports the following components:
  - ARGO Consumer log
  - ARGO EGI Connectors
+ - ARGO Messaging Service
  - ARGO Web API
  - POEM service
 
@@ -43,6 +44,13 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Thu May 25 2017 Daniel Vrcic <daniel.vrcic@gmail.com> - 0.1.7-3%{?dist}
+- ams-probe arguments named according to Nagios guidelines
+* Thu May 25 2017 Daniel Vrcic <daniel.vrcic@gmail.com> - 0.1.7-2%{?dist}
+- argo-ams-library as dependency
+- web_api corrected unused reports function call
+* Tue May 16 2017 Hrvoje Sute <sute.hrvoje@gmail.com> - 0.1.7-1%{?dist}
+- ARGO-759 Develop a probe that checks the status of AMS
 * Wed Apr 26 2017 Daniel Vrcic <daniel.vrcic@gmail.com> - 0.1.6-4%{?dist}
 - converted tab to whitespaces 
 - check current date for the downtimes state
