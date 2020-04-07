@@ -51,19 +51,18 @@ pipeline {
     post {
         always {
             cleanWs()
-            slackSend( message: "Test message <$BUILD_URL|$PROJECT_DIR>. Branch: $BRANCH_NAME Job: $JOB_NAME !")
         }
         success {
             script{
                 if ( env.BRANCH_NAME == 'master' || env.BRANCH_NAME == 'devel' ) {
-                    slackSend( message: ":rocket: New version for <$BUILD_URL|$PROJECT_DIR>. Branch: $BRANCH_NAME Job: $JOB_NAME !")
+                    slackSend( message: ":rocket: New version for <$BUILD_URL|$PROJECT_DIR>:$BRANCH_NAME Job: $JOB_NAME !")
                 }
             }
         }
         failure {
             script{
                 if ( env.BRANCH_NAME == 'master' || env.BRANCH_NAME == 'devel' ) {
-                    slackSend( message: ":rain_cloud: Build Failed for <$BUILD_URL|$PROJECT_DIR>.  Branch: $BRANCH_NAME Job: $JOB_NAME")
+                    slackSend( message: ":rain_cloud: Build Failed for <$BUILD_URL|$PROJECT_DIR>:$BRANCH_NAME Job: $JOB_NAME")
                 }
             }   
         }
